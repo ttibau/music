@@ -8,8 +8,13 @@
     "start": "next start"
   },
   "dependencies": {
+    "@vercel/node": "^1.8.2",
     "next": "9.5.3",
     "react": "16.13.1",
-    "react-dom": "16.13.1"
+    "react-dom": "16.13.1",
+    "react-h5-audio-player": "^3.4.1"
+  },
+  "devDependencies": {
+    "@types/react": "^16.9.49"
   }
 }

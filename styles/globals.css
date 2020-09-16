@@ -1,10 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: 'Bebas Neue', cursive;
 }
+
 
 a {
   color: inherit;
@@ -13,4 +15,32 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+.rhap_volume-indicator {
+  background: #FFFFFF !important;
+}
+
+.rhap_volume-button {
+  color: #FFFFFF !important;
+}
+
+.rhap_container {
+  background-color: rgba(0, 0, 0, 0.4) !important;
+}
+
+.rhap_time {
+  color: #FFFFFF !important;
+}
+
+.rhap_progress-indicator {
+  background: #FFFFFF !important;
+}
+
+.rhap_repeat-button {
+  color: #FFFFFF !important;
+}
+
+.rhap_main-controls-button {
+  color: #FFFFFF !important;
 }
