@@ -17,7 +17,7 @@ function Home() {
     const getMusicList = async (id: Number) => {
         try {
             let response = await axios.get('/api/getMusicList')
-            setMusicList(response.data)
+            setMusicList(response.data.result)
         } catch (error) {
             console.log(error)
         }

@@ -13,7 +13,7 @@ const Player = (props: IPlayer) => {
 
     useEffect(() => {
         if(sound)
-            player?.current.audio.current.play()
+            player?.current?.audio.current.play()
     }, [sound])
 
     return (
@@ -23,6 +23,7 @@ const Player = (props: IPlayer) => {
                     style={{ height: 100 }}
                     src={sound ? sound.path : null}
                     onPlay={e => console.log("onPlay")}
+                    onEnded={e => console.log('ACABOU', e)}
                 />
         </div>
     )

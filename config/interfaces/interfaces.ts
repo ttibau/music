@@ -12,7 +12,7 @@ export interface IMusicList {
 }
 
 export interface IMusic {
-    id: Number,
+    _id: string,
     title: string, 
     path: string, 
     image: string,

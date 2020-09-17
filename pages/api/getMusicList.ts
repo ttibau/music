@@ -1,11 +1,38 @@
-import { NowRequest, NowResponse } from '@vercel/node'
-import { IMusic } from '../../config/interfaces/interfaces'
+import { NowRequest, NowResponse } from '@vercel/node';
+import { IMusic } from '../../config/interfaces/interfaces';
+import { MongoClient, Db } from 'mongodb'
+import url from 'url'
 
+let cachedDB: Db = null
 
-export default (request: NowRequest, response: NowResponse) => {
-    let musicList: Array<IMusic> = [
-        { id:1, path: 'https://www.myinstants.com/media/sounds/aud-20180228-wa0076.mp3', title: 'CHUPA MEU PINTO ENTÃO', image: 'https://images.pexels.com/photos/2796145/pexels-photo-2796145.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'},
-        { id:2, path: 'https://www.myinstants.com/media/sounds/untitled_45.mp3', title: 'OH O PAU QUEBRANDO', image: 'https://images.pexels.com/photos/2147029/pexels-photo-2147029.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'}
-    ]
-    return response.json(musicList)
+async function connectToDatabase(uri: string) {
+    if (cachedDB) {
+        return cachedDB
+    }
+    const client = await MongoClient.connect(uri, {
+        useNewUrlParser: true, 
+        useUnifiedTopology: true 
+    })
+
+    const dbName = url.parse(uri).pathname.substr(1)
+    const db = client.db(dbName)
+
+    cachedDB = db
+
+    return db
+}
+
+export default async (request: NowRequest, response: NowResponse) => {
+    const db = await connectToDatabase(process.env.MONGODB_URI)
+
+    const collection = db.collection('music')
+
+    
+    collection.find({}).toArray((err, result) => {
+        if(err) {
+            return response.status(400).send({ message: 'Erro ao buscar lista de músicas'})
+        }
+
+        return response.status(200).send({ result })
+    })
 }
