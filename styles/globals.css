@@ -17,6 +17,13 @@ a {
   box-sizing: border-box;
 }
 
+.music-content {
+  display: flex;
+  flex-direction: row;
+  height: 90px;
+  align-items: center;
+}
+
 .rhap_volume-indicator {
   background: #FFFFFF !important;
 }
