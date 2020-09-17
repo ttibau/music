@@ -1,5 +1,4 @@
 import { NowRequest, NowResponse } from '@vercel/node';
-import { IMusic } from '../../config/interfaces/interfaces';
 import { MongoClient, Db } from 'mongodb'
 import url from 'url'
 
@@ -24,9 +23,7 @@ async function connectToDatabase(uri: string) {
 
 export default async (request: NowRequest, response: NowResponse) => {
     const db = await connectToDatabase(process.env.MONGODB_URI)
-
     const collection = db.collection('music')
-
     
     collection.find({}).toArray((err, result) => {
         if(err) {

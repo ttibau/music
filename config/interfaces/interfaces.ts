@@ -1,10 +1,11 @@
 export interface IAlbuns {
-    id?: Number,
+    _id?: string,
     picture?: string, 
     year?: string, 
     title?: string,
     color?: string,
     callback?: (album: IAlbuns) => void
+    list: Array<IAlbuns>
 }
 
 export interface IMusicList {
