@@ -8,7 +8,8 @@ import axios from 'axios'
 function Home() {
     const [background, setBackground] = useState('#12142b')
     const [musicList, setMusicList] = useState<Array<IMusic> | undefined>([])
-
+    const [albunsList, setAlbunsList] = useState<Array <IAlbuns> | undefined>([])
+    
     const setAlbum = (album :IAlbuns) => {
         getMusicList(album.id)
         setBackground(album.color)
@@ -18,6 +19,15 @@ function Home() {
         try {
             let response = await axios.get('/api/getMusicList')
             setMusicList(response.data.result)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const getAlbunsList = async ( ) => {
+        try {
+            let response = await axios.get('/api/getAlbunsList')
+            setAlbunsList(response.data.result)
         } catch (error) {
             console.log(error)
         }

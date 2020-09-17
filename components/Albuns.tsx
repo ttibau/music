@@ -1,6 +1,5 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { IAlbuns } from "../config/interfaces/interfaces";
-
 
 const Albuns = (props : IAlbuns) => {
 
