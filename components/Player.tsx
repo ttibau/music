@@ -7,6 +7,16 @@ interface IPlayer {
     color: string
 }
 
+interface IHeader {
+    title: string
+}
+
+const Header = (props : IHeader) => {
+    return (
+        <span>{props.title}</span>
+    )
+}
+
 const Player = (props: IPlayer) => {
     const sound = useSelector(state => state.sound)
     const player = useRef()
@@ -20,10 +30,13 @@ const Player = (props: IPlayer) => {
         <div style={{ backgroundColor: props.color}}>
                 <AudioPlayer
                     ref={player}
-                    style={{ height: 100 }}
+                    style={{ height: 120 }}
                     src={sound ? sound.path : null}
                     onPlay={e => console.log("onPlay")}
                     onEnded={e => console.log('ACABOU', e)}
+                    showSkipControls={true} 
+                    showJumpControls={false}
+                    header={<Header title={sound ? sound.title : null} />}
                 />
         </div>
     )

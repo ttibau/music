@@ -17,6 +17,13 @@ a {
   box-sizing: border-box;
 }
 
+.rhap_header {
+  display: flex;
+  color: #FFFFFF;
+  align-items: center;
+  justify-content: center;
+}
+
 .music-content {
   display: flex;
   flex-direction: row;
