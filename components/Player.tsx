@@ -27,7 +27,7 @@ const Player = (props: IPlayer) => {
     }, [sound])
 
     return (
-        <div style={{ backgroundColor: props.color}}>
+        <div style={{ backgroundColor: props.color, position: 'absolute', bottom: 0, width: '100%'}}>
                 <AudioPlayer
                     ref={player}
                     style={{ height: 120 }}

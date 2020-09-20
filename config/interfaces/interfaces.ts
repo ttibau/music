@@ -1,3 +1,5 @@
+import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
+
 export interface IAlbuns {
     _id?: string,
     picture?: string, 
@@ -17,4 +19,9 @@ export interface IMusic {
     title: string, 
     path: string, 
     image: string,
+}
+
+export interface IMenuItem {
+    title: string,
+    icon : IconDefinition
 }

@@ -1,5 +1,5 @@
 import { NowRequest, NowResponse } from '@vercel/node';
-import { MongoClient, Db } from 'mongodb'
+import { MongoClient, Db, ObjectID} from 'mongodb'
 import url from 'url'
 
 let cachedDB: Db = null
@@ -25,11 +25,10 @@ export default async (request: NowRequest, response: NowResponse) => {
     const db = await connectToDatabase(process.env.MONGODB_URI)
     const collection = db.collection('music')
     
-    collection.find({}).toArray((err, result) => {
+    collection.find({"album" : request.body.id }).toArray((err, result) => {
         if(err) {
             return response.status(400).send({ message: 'Erro ao buscar lista de músicas'})
         }
-
         return response.status(200).send({ result })
     })
 }

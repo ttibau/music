@@ -2,8 +2,15 @@ import React, {useState, useEffect} from 'react'
 import Player from '../../components/Player';
 import Albuns from '../../components/Albuns';
 import MusicList from '../../components/MusicList';
+import Sidebar from '../../components/Sidebar';
 import { IAlbuns, IMusic } from '../../config/interfaces/interfaces'
 import axios from 'axios'
+
+declare module 'axios' {
+    export interface AxiosRequestConfig {
+      id: string;
+    }
+}
 
 function Home() {
     const [background, setBackground] = useState('#12142b')
@@ -23,13 +30,13 @@ function Home() {
     }, [])
 
     const setAlbum = (album :IAlbuns) => {
-        getMusicList(album.id)
+        getMusicList(album._id)
         setBackground(album.color)
     }
 
-    const getMusicList = async (id: Number) => {
+    const getMusicList = async (id: string) => {
         try {
-            let response = await axios.get('/api/getMusicList')
+            let response = await axios.post('/api/getMusicList', { id })
             setMusicList(response.data.result)
         } catch (error) {
             console.log(error)
@@ -38,9 +45,16 @@ function Home() {
 
 
     return (
-        <div style={{ height: '100vh', backgroundColor: '#12142b', padding: 20}}>
-            <Albuns list={albunsList} callback={(album) =>  setAlbum(album)}/>
-            <MusicList list={musicList} />
+        <div >
+            <div style={{ backgroundColor: '#12142b', minHeight: '100vh', padding: 15 }}>
+                <Sidebar/>
+                <div style={{ marginLeft: 200 }}>
+                    <div>
+                        <Albuns list={albunsList} callback={(album) =>  setAlbum(album)}/>
+                        <MusicList list={musicList} />
+                    </div>
+                </div>
+            </div>
             <footer>
                 <Player color={background} />
             </footer>
