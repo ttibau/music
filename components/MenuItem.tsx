@@ -15,7 +15,9 @@ const MenuItem = (props : IMenuItem) => {
             onMouseEnter={() => setHover(true)} 
             onMouseLeave={() => setHover(false)
         }>
-            <a style={{ color: '#FFFFFF'}}>
+            <a 
+                style={{ color:  props.active ? '#fd2e55' : '#FFFFFF'}}
+            >
                 <FontAwesomeIcon 
                     icon={props.icon}
                     style={{ marginRight: 10}}

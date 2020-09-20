@@ -48,7 +48,7 @@ function Home() {
         <div >
             <div style={{ backgroundColor: '#12142b', minHeight: '100vh', padding: 15 }}>
                 <Sidebar/>
-                <div style={{ marginLeft: 200 }}>
+                <div style={{ marginLeft: 220 }}>
                     <div>
                         <Albuns list={albunsList} callback={(album) =>  setAlbum(album)}/>
                         <MusicList list={musicList} />

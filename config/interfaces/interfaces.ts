@@ -23,5 +23,11 @@ export interface IMusic {
 
 export interface IMenuItem {
     title: string,
-    icon : IconDefinition
+    icon : IconDefinition,
+    active?: boolean
+}
+
+export interface ILoading {
+    title: string, 
+    color: string
 }
